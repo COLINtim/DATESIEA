@@ -1,0 +1,157 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+
+<!-- You might want to try something fancier: -->
+<!-- html/nunjucks docs: https://mozilla.github.io/nunjucks/ -->
+<!-- pug: https://pugjs.org/ -->
+<!-- haml: http://haml.info/ -->
+<!-- hbs(handlebars): http://handlebarsjs.com/ -->
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DATESIEA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- import the webpage's stylesheet -->
+    
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- import the webpage's client-side javascript file -->
+    <script src="/client.js"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <style>
+    body {
+        position: relative; 
+    }
+    #section1 {padding-top:50px;height:300px;color: #fff; background-color: #1E88E5;}
+    #section2 {padding-top:50px;height:300px;color: #fff; background-color: #673ab7;}
+    #section3 {padding-top:50px;height:300px;color: #fff; background-color: #ff9800;}
+    #section4 {padding-top:50px;height:300px;color: #fff; background-color: #00bcd4;}
+
+    </style>
+  </head>
+  <body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+          </button>
+          
+          
+           
+          
+          <a class="navbar-brand" href="/gallery">DATESIEA</a>
+        </div>
+        <ul class="nav navbar-nav">
+              <li><a href="/profile">Profil</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                            
+              <div class="navbar-header" id="nameuser"></div>
+              
+            </ul>
+        <div>
+
+        </div>
+      </div>
+    </nav>    
+    
+    
+<!--
+    <div id="section1" class="container-fluid">
+      <h1>Personne 1</h1>
+
+    </div>
+    <div id="section2" class="container-fluid">
+      <h1>Personne 2</h1>
+
+    </div>
+    <div id="section3" class="container-fluid">
+      <h1>Personne 3</h1>
+
+    </div>
+    <div id="section4" class="container-fluid">
+      <h1>Personne 4</h1>
+
+    </div>
+     -->
+    
+    <div id="output">
+      
+    </div>
+  
+    
+    <script>
+
+      
+      fetch('/users.json')
+      .then((res) => res.json())
+      .then((data) => {
+        let output = null;
+        let couleur = 0;
+        data.forEach(function(user){
+          
+          couleur = couleur + 1;
+          output +=`
+            <div id="section${couleur}" class="container-fluid">
+              <h1>${user.firstname} ${user.name}</h1>
+              <p><b>age:</b> ${user.age}</p>
+              <p><b>Story:</b> ${user.story}</p>
+            </div>
+          `;
+          if(couleur>3){couleur = 0;}
+
+        });
+        document.getElementById('output').innerHTML = output;
+      })
+      
+      
+      fetch('/user.txt')
+      .then(function(res){
+        return res.text()
+      })
+      .then(function(data){
+        currentuser = data;
+      });
+      /////////////////////////////////////////////////////////
+      fetch('/users.json')
+      .then((res) => res.json())
+      .then((data) => {
+        let username = '';
+        
+        data.forEach(function(user){
+          if(user.username === currentuser){
+            username +=`
+              <h4 color="White">
+                <b>
+                  ${user.firstname} ${user.name}
+                </b>
+              </h4>
+            `;
+            
+          }
+          
+
+        });
+        document.getElementById('nameuser').innerHTML = username;
+      })
+ 
+    
+    </script>
+   
+    
+    
+  </body>
+</html>

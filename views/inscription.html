@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- import the webpage's client-side javascript file -->
+    <script src="/client.js" ></script>
+    
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="DATESIEA.css">
+  
+    <title>DATESIEA</title>
+    <style>
+      
+    </style>
+  </head>
+    
+  
+  <body>
+  
+    
+    
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">DATESIEA</a>
+        </div>
+      </div>
+    </nav>
+     
+    <div>
+      
+        
+          <!--//////////////////////////////////////////////////-->
+          <form id="addProfile">
+            <div class="container">
+              <h3><b>Inscription</b></h3>
+              <br><br>
+              <label for="uname"><b>Username</b></label>
+              <input type="text" placeholder="Enter a Username" id="uname" required>
+
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter a Password" id="psw" required>
+              
+              <label for="name"><b>Name</b></label>
+              <input type="text" placeholder="Enter your name" id="name" required>
+              
+              <label for="firstname"><b>First Name</b></label>
+              <input type="text" placeholder="Enter your firstname" id="firstname" required>
+              
+              <label for="age"><b>Age</b></label>
+              <input type="text" placeholder="Enter your age" id="age" required>
+              
+              <label for="story"><b>Story</b></label>
+              <div>
+                <textarea placeholder="Enter your story" id="story" rows="4" cols="182"></textarea>
+              </div>
+              <br>
+
+              <button type="submit"><b>send the inscription form</b></button>
+              
+            </div>
+          </form>
+     
+     
+    </div>
+   
+    <script>
+      
+      document.getElementById('addProfile').addEventListener
+              ('submit',addProfile);
+
+
+
+      function addProfile(e){
+        e.preventDefault();
+
+        let username = document.getElementById('uname').value;
+        let password = document.getElementById('psw').value;
+        let name = document.getElementById('name').value;
+        let firstname = document.getElementById('firstname').value;
+        let age = document.getElementById('age').value;
+        let story = document.getElementById('story').value;
+        
+        fetch('/users.json', {
+          method:'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+
+          body:JSON.stringify({username:username, password:password, name:name, firstname:firstname, age:age, story:story})
+          
+        })
+        .then((res) => res.json())
+        .then((data) => console.log(data))
+        .catch(function() {
+          console.log("error");
+        });
+        
+      }
+      
+     
+    </script>
+    
+    
+  </body>
+</html>
+

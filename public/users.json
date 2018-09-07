@@ -1,0 +1,47 @@
+[ 
+  {
+    "id":0,
+    "username":"tim",
+    "password":"colin",
+    "name":"COLIN",
+    "firstname":"Tim",
+    "age":21,
+    "story":"lost in the middle of paris"
+  },
+  {
+    "id":1,
+    "username":"armand",
+    "password":"sylvain",
+    "name":"SYLVAIN",
+    "firstname":"Armand",
+    "age":22,
+    "story":"young jew with a big heart"
+  },
+  {
+    "id":2,
+    "username":"allan",
+    "password":"pau",
+    "name":"PAU",
+    "firstname":"Allan",
+    "age":20,
+    "story":"asteroid clasher"
+  },
+  {
+    "id":3,
+    "username":"ugo",
+    "password":"tagnati",
+    "name":"TAGNATI",
+    "firstname":"ugo",
+    "age":21,
+    "story":"special animal "
+  },
+  {
+    "id":4,
+    "username":"vincent",
+    "password":"kheraro",
+    "name":"KHERARO",
+    "firstname":"Vincent",
+    "age":21,
+    "story":"sir dino the benevolent phasm"
+  }
+]
