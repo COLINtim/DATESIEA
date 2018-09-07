@@ -1,0 +1,11 @@
+[ 
+  {
+    "id":0,
+    "username":"tim",
+    "password":"colin",
+    "name":"colin",
+    "firstname":"tim",
+    "age":21,
+    "story":"hi i'm a story"
+  }
+]

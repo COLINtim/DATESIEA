@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- import the webpage's client-side javascript file -->
+    <script src="/client.js" ></script>
+
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="DATESIEA.css">
+  
+    <title>DATESIEA</title>
+    <style>
+      
+     
+
+      
+    </style>
+  </head>
+    
+  
+  <body>
+  
+    
+    
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">DATESIEA</a>
+        </div>
+      </div>
+    </nav>
+     
+    
+      
+          <!--//////////////////////////////////////////////////-->
+          <form id="getVerif">
+            <div class="container">
+              <h3><b>Authentication</b></h3>
+              <br><br>
+              <label for="uname"><b>Username</b></label>
+              <input type="text" placeholder="Enter Username" id="uname" required>
+
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" id="psw" required>
+
+              <button type="submit">Login</button>
+              <a href="/inscription">want to join the network ?</a>
+            </div>
+          </form>
+     
+          <!--//////////////////////////////////////////////////-->
+        
+   
+    <script>
+      
+
+
+      document.getElementById('getVerif').addEventListener
+              ('submit',getVerif);
+
+
+
+      function getVerif(e){
+        e.preventDefault();
+
+        let uname = document.getElementById('uname').value;
+        let psw = document.getElementById('psw').value;
+
+        
+        
+        fetch('/users.json')
+        .then((res) => res.json())
+        .then((data) => {
+          
+          data.forEach(function(user){
+            if(user.username === uname && user.password === psw){
+              fetch('/user.txt', {
+                method:'POST',
+                headers: {
+                  'Accept': 'txt',
+                  'Content-Type': 'txt'
+                },
+
+                body:user.username
+
+              })
+              .then((res) => window.location.href = '/gallery')
+              .catch(function() {
+                console.log("error");
+              });
+              
+            }
+          })
+
+        })
+
+        }
+
+    </script>
+    
+    
+  </body>
+</html>
+
